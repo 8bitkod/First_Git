@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+     /* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    text-align: left;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.avatar img {
+    width: 100%; /* Ensure it scales with the container */
+    height: 100%; /* Maintain aspect ratio */
+}
+
+/* About Text Section */
+.about-text {
+    flex: 1;
+    text-align: left;
+}
+
+/* About Buttons */
+.about-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap; /* Wrap buttons for small screens */
+}
+
+.about-buttons a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: black;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.about-buttons a:hover {
+    background-color: black;
+    color: #fff;
+}
+
+body.dark .about-buttons a {
+    background-color: #FEBA01;
+    color: #000;
+    border-color: #000;
+}
+
+body.dark .about-buttons a:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Container Styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Main Content Card */
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    margin: 20px auto;
+    width: 70%;
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.dark .card {
+    background-color: #1f1f1f;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Skills Bar */
+.skills-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    position: relative;
+}
+
+.skills-bar label {
+    min-width: 100px;
+    font-weight: bold;
+}
+
+.bar-container {
+    flex: 1;
+    height: 20px;
+    background-color: #ddd;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.bar-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--fill);
+    background-color: #FEBA01;
+    border-radius: 5px;
+    z-index: 1;
+    transition: width 0.3s ease;
+}
+
+.percentage {
+    position: absolute;
+    right: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    z-index: 2;
+}
+
+body.dark .bar-container::after {
+    background-color: #FEBA01;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+
+.dark footer {
+    background-color: #1f1f1f;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    /* Make the cards take full width */
+    .card {
+        width: 100%;
+        padding: 20px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-buttons {
+        flex-direction: column;
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Reduce padding for mobile */
+    .container {
+        padding: 10px;
+    }
+}
+
+
+        body.dark .about-buttons a {
+    background-color: #FEBA01;
+    color: #000; /* Black text color */
+    border-color: #000; /* Black border */
+}
+
+body.dark .about-buttons a:hover {
+    background-color: white; /* Black background on hover */
+    color: black; /* White text on hover */
+}
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark {
+            background-color: #121212;
+            color: #d1d1d1;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Scroll Progress Bar */
+        #progressBar {
+            height: 4px;
+            background-color:#FEBA01;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            z-index: 1000;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+      
+
+        header.dark {
+            background-color: #1f1f1f;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap:40px;
+        }
+
+        nav ul li button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: black;
+            transition: color 0.3s;
+            padding: 10px;
+        }
+
+        nav ul li button:hover {
+            color: black;
+            
+            border-radius: 5px;
+            background-color: #FEBA01;
+            box-shadow: 2px 2px 5px gray;
+        }
+
+        .toggle-container {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            background: #ddd;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+
+        .toggle-container.dark {
+            background: black;
+        }
+
+        .toggle-circle {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 19px;
+            height: 19px;
+            background: #fff;
+            border-radius: 50%;
+            transition: left 0.3s;
+        }
+
+        .toggle-container.dark .toggle-circle {
+            left: 26px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+    
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 50px;
+            margin: 20px auto;
+            width: 70%;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .dark .card {
+            background-color: #1f1f1f;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .skills-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    position: relative;
+}
+
+.skills-bar label {
+    min-width: 100px;
+    font-weight: bold;
+}
+
+.bar-container {
+    flex: 1;
+    height: 20px;
+    background-color: #ddd;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.bar-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--fill);
+    background-color: #FEBA01;
+    border-radius: 5px;
+    z-index: 1;
+    transition: width 0.3s ease;
+}
+
+.percentage {
+    position: absolute;
+    right: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    z-index: 2;
+}
+
+body.dark .bar-container::after {
+    background-color: #FEBA01; /* Yellow for dark mode */
+}
+        .list-item {
+            margin: 10px 0;
+        }
+
+        .list-item strong {
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+        }
+
+        .dark footer {
+            background-color: #1f1f1f;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card {
+                width: 90%;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div id="progressBar"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><button onclick="scrollToSection('about')">About</button></li>
+                <li><button onclick="scrollToSection('experience')">Experience</button></li>
+                <li><button onclick="scrollToSection('projects')">Projects</button></li>
+                <li><button onclick="scrollToSection('education')">Education</button></li>
+                <li><button onclick="scrollToSection('skills')">Skills</button></li>
+                <li><button onclick="scrollToSection('contact')">Contact</button></li>
+            </ul>
+        </nav>
+        <div id="themeToggle" class="toggle-container">
+            <div class="toggle-circle"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- About Section -->
+        <div class="card" id="about">
+            <div class="about-content">
+                <div class="">
+                    <img src="pass.jpeg" height="120px" width="120px" alt="Mohammed kaif">
+                </div>
+                <div class="about-text">
+                    <h1>Mohammed Kaif Shaik</h1>
+                    <p>Hello! I'm Mohammed kaif, a passionate and dedicated software developer eager to contribute and grow in the tech industry. With a strong foundation in programming, problem-solving, and software development, I thrive on creating innovative solutions and building efficient, scalable applications.</p>
+                </div>
+            </div>
+            <div class="about-buttons">
+                <a href="https://www.linkedin.com/in/mohammed-kaif-shaik-b56323236/" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width: 16px;">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" style="width: 16px;">
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Experience Section -->
+        <div class="card" id="experience">
+            <h2>Work Experience</h2> <hr><br>
+            <p><strong> <li>KODNEST TECHNOLOGIES | AUG. 2024 - DEC 2024 </li></strong></p>
+            <p><i><strong>Software Developer</strong></i></p><br>
+            <p>As a recent graduate  I have honed my skills in languages like Java, JavaScript and frameworks such as React, Node.js My hands-on experience includes developing a dynamic portfolio website, Bank Management System with RDBMS </p> <br>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="card" id="projects">
+            <h2>Projects</h2><hr><br>
+                <li class="list-item;" >
+                   <strong>Bank Management System</strong>
+                   <i><p><u>JAVA, Java Frameworks, SQL | OCT 2024 - Dec 2024</p></i></u> <br>
+                    <li>
+                        Developed a fully functional Bank Management System using an RDBMS for secure and efficient data management. </li>
+
+                    <li>Implemented user authentication for secure login and registration, ensuring a personalized banking
+                        experience. The platform features an intuitive interface, allowing users to easily navigate through
+                        account and view details.</li>
+
+                        <li>Utilized SQL as the database to efficiently store and manage account details and user data.</li>
+                        <li>Integrated payment gateway functionality for smooth transaction processing, enhancing overall user
+                            satisfaction and engagement.</li>
+                </li><br><hr><hr><hr>
+                <li class="list-item">
+                    <strong>QUIZ APP</strong>
+                    <p><i><u> HTML, CSS, REACT JS, JAVASCRIPT, NODE JS| July 2023 - Sep 2023</u></i></p><br>
+                    <li><strong>CSS Styling:</strong> Utilized CSS styles to desgin webpage.
+            
+                        </li>
+                    <li><strong>:</strong> 
+                        I developed a fully interactive Quiz Application using HTML, CSS, React, Node.js, and JavaScript to create an engaging and user-friendly experience.</li>
+                    <li><strong>User-Experience</strong>  The frontend is built with React, ensuring efficient state management and smooth transitions between questions, while the Node.js backend handles logic for serving questions, processing user inputs, and maintaining session data. </li>
+                </li><br> <hr><hr><hr>
+        </div>
+        
+        <!-- Education Section -->
+        <div class="card" id="education">
+            <h2>Education</h2><hr><br>
+            <ul>
+                <li><strong>Degree:</strong> Bachelor of Engineering in Electronics and Communication Engineering<br><strong>Year:</strong> 2024<br><strong>CGPA:</strong>8.00</li> <br>
+            </ul>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="card" id="skills">
+            <h2>Skills</h2>
+            <hr><br>
+            <div class="skills-bar">
+                <label>Java</label>
+                <span class="bar-container" style="--fill: 50%;">
+                    <span class="percentage">80%</span>
+                </span>
+            </div>
+            <div class="skills-bar">
+                <label>Python</label>
+                <span class="bar-container" style="--fill: 75%;">
+                    <span class="percentage">75%</span>
+                </span>
+            </div>
+            <div class="skills-bar">
+                <label>HTML5,CSS3 </label>
+                <span class="bar-container" style="--fill: 80%;">
+                    <span class="percentage">80%</span>
+                </span>
+            </div>
+            <div class="skills-bar">
+                <label>JavaScript</label>
+                <span class="bar-container" style="--fill: 60%;">
+                    <span class="percentage">60%</span>
+                </span>
+            </div>
+            <div class="skills-bar">
+                <label>ReactJS</label>
+                <span class="bar-container" style="--fill: 60%;">
+                    <span class="percentage">60%</span>
+                </span>
+            </div>
+            <div class="skills-bar">
+                <label>SQL</label>
+                <span class="bar-container" style="--fill: 85%;">
+                    <span class="percentage">85%</span>
+                </span>
+            </div>
+            <div class="skills-bar">
+                <label>MongoDB</label>
+                <span class="bar-container" style="--fill: 60%;">
+                    <span class="percentage">60%</span>
+                </span>
+            </div>
+            <div class="skills-bar">
+                <label>Spring Boot</label>
+                <span class="bar-container" style="--fill: 60%;">
+                    <span class="percentage">60%</span>
+                </span>
+            </div>
+            <div class="skills-bar">
+                <label>Jira</label>
+                <span class="bar-container" style="--fill: 70%;">
+                    <span class="percentage">70%</span>
+                </span>
+            </div>
+            
+        </div>
+        
+        
+        <!-- Contact Section -->
+        <div class="card" id="contact">
+            <h2>Contact</h2><hr><br>
+            <p>Email: <a href="mailto:kaif2809786@gmail.com"></a>kaif2809786@gmail.com</p>
+            <p>Phone: +91 9381170912</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Mohammed kaif. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Theme Toggle
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            themeToggle.classList.toggle('dark');
+        });
+
+        // Scroll Progress
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (scrollTop / docHeight) * 100;
+            progressBar.style.width = `${scrolled}%`;
+        });
+
+        // Scroll to Section
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
